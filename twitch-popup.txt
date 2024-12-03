@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch Pop-up</title>
+    <style>
+        /* Fullscreen Background */
+        body {
+            margin: 0;
+            background: transparent;
+            overflow: hidden;
+        }
+
+        /* Pop-up Container */
+        .popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 300px;
+            height: 150px;
+            background: linear-gradient(135deg, #9146FF, #6441A5);
+            color: #fff;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            font-family: Arial, sans-serif;
+            opacity: 0;
+            animation: pop-up 2s ease-out forwards;
+        }
+
+        /* Pop-up Animation */
+        @keyframes pop-up {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* Fade-out Animation */
+        @keyframes fade-out {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="popup" id="twitchPopup">
+        🚀 Thank you for watching! Follow the channel! 🎉
+    </div>
+
+    <script>
+        // Function to show the pop-up
+        function showPopup() {
+            const popup = document.getElementById("twitchPopup");
+            popup.style.animation = "pop-up 2s ease-out forwards";
+            
+            // Remove after 10 seconds
+            setTimeout(() => {
+                popup.style.animation = "fade-out 2s ease-out forwards";
+            }, 8000);
+        }
+
+        // Trigger pop-up every 15 minutes
+        setInterval(showPopup, 15 * 60 * 1000);
+
+        // Initial Trigger for Testing
+        showPopup();
+    </script>
+</body>
+</html>
